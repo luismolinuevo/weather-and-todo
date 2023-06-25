@@ -15,6 +15,11 @@ export async function fetchCurrentWeather() {
     const temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
     currentWeather.main.temp_fahrenheit = temperatureFahrenheit;
 
+    // Convert "feels like" temperature from Celsius to Fahrenheit
+    const feelsLikeCelsius = currentWeather.main.feels_like - 273.15;
+    const feelsLikeFahrenheit = (feelsLikeCelsius * 9) / 5 + 32;
+    currentWeather.main.feels_like_fahrenheit = feelsLikeFahrenheit;
+
     return currentWeather;
   } catch (error) {
     console.error("Error fetching data:", error);

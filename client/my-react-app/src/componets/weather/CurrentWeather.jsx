@@ -6,12 +6,21 @@ export default function CurrentWeather() {
   const [weather, setWeather] = useState([]);
   const [formattedDate, setFormattedDate] = useState(null);
   const [dayOfWeek, setDayOfWeek] = useState("");
+  const [weatherInfo, setWeatherInfo] = useState([]);
+  const [weatherMainInfo, setWeatherMainInfo] = useState([]);
+  const [wind, setWind] = useState("");
 
   useEffect(() => {
     const getWeather = async () => {
       try {
         const fetchData = await fetchCurrentWeather();
-        setWeather(fetchData);
+          setWeather(fetchData);
+          setWeatherInfo(fetchData.weather[0])
+          setWeatherMainInfo(fetchData.main);
+          setWind(fetchData.wind)
+          console.log(fetchData.weather[0])
+        
+        
         const date = new Date(fetchData.dt * 1000);
 
         setFormattedDate(date.toLocaleDateString());
@@ -28,12 +37,10 @@ export default function CurrentWeather() {
 
     getWeather();
   }, []);
-
-  function celsiusToFahrenheit(celsius) {
-    var fahrenheit = (celsius * 9/5) + 32;
-    return fahrenheit;
-  }
   
+  if (!weather) {
+    return null; // Render null or a loading spinner while waiting for the weather data
+  }
 
 
   return (
@@ -41,10 +48,15 @@ export default function CurrentWeather() {
       <h1 className="text-2xl">
         {dayOfWeek}, {formattedDate} | {<TimeDisplay/>}
       </h1>
-      <h3 className="text-xl pt-4">{weather.weather[0].description}</h3>
-      <div className="flex justify-center">
-        <img src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="weather icon" />
-        <h3>{celsiusToFahrenheit(weather.main.temp)}</h3>
+      <h3 className="text-2xl pt-4">{weatherInfo.description}</h3>
+      <div className="flex justify-center pt-8 gap-12 items-center">
+        <img src={`https://openweathermap.org/img/w/${weatherInfo.icon}.png`} alt="weather icon" className="w-[60px] md:w-[100px]"/>
+        <h3 className="">{parseInt(weatherMainInfo.temp_fahrenheit)}&deg;F</h3>
+        <ul className="text-lg md:text-3xl">
+          <li>Humidity: {weatherMainInfo.humidity}%</li>
+          <li>Wind: {wind.speed}mph</li>
+          <li>Feels Like: {parseInt(weatherMainInfo.feels_like_fahrenheit)}&deg;F</li>
+        </ul>
       </div>
     </div>
   );
