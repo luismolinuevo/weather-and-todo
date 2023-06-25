@@ -77,3 +77,21 @@ export async function fetchForecast() {
     throw new Error("Failed to fetch data");
   }
 }
+
+export function currentTime() {
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    
+    let period = 'am';
+    let formattedHours = hours;
+    
+    if (hours >= 12) {
+      period = 'pm';
+      formattedHours = hours % 12 || 12;
+    }
+    
+    const formattedTime = `${formattedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+    
+    return formattedTime;
+}

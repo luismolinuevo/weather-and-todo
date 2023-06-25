@@ -20,7 +20,7 @@ export default function HomePage() {
     // }, [])
 
   return (
-    <div className='px-4 py-6 md:py-10 text-center text-2xl md:text-3xl'>
+    <div className='px-4 py-6 md:py-10 text-center text-3xl'>
         <h1>New York, NY</h1>
         <Weather/>
     </div>
