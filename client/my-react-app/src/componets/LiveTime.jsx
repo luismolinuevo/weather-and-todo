@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function TimeDisplay() {
+function LiveTime() {
   const [formattedTime, setFormattedTime] = useState("");
 
   useEffect(() => {
@@ -24,9 +24,8 @@ function TimeDisplay() {
       setFormattedTime(formattedTime);
     };
 
-    const timerId = setInterval(updateTime, 1000); // Update every second
+    const timerId = setInterval(updateTime, 1000); 
 
-    // Clean up the interval on component unmount
     return () => clearInterval(timerId);
   }, []);
 
@@ -34,4 +33,4 @@ function TimeDisplay() {
 
 }
 
-export default TimeDisplay;
+export default LiveTime;

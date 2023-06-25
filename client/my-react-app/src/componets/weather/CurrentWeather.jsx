@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { fetchCurrentWeather, currentTime } from "../../loaders/weather";
-import TimeDisplay from "./Time";
+import { fetchCurrentWeather } from "../../loaders/weather";
+import TimeDisplay from "../LiveTime";
 
 export default function CurrentWeather() {
   const [weather, setWeather] = useState([]);
   const [formattedDate, setFormattedDate] = useState(null);
   const [dayOfWeek, setDayOfWeek] = useState("");
-  const [time, setTime] = useState()
 
   useEffect(() => {
     const getWeather = async () => {
@@ -30,12 +29,23 @@ export default function CurrentWeather() {
     getWeather();
   }, []);
 
+  function celsiusToFahrenheit(celsius) {
+    var fahrenheit = (celsius * 9/5) + 32;
+    return fahrenheit;
+  }
+  
+
 
   return (
     <div className="mt-6">
-      <h1 className="text-xl">
+      <h1 className="text-2xl">
         {dayOfWeek}, {formattedDate} | {<TimeDisplay/>}
       </h1>
+      <h3 className="text-xl pt-4">{weather.weather[0].description}</h3>
+      <div className="flex justify-center">
+        <img src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="weather icon" />
+        <h3>{celsiusToFahrenheit(weather.main.temp)}</h3>
+      </div>
     </div>
   );
 }
