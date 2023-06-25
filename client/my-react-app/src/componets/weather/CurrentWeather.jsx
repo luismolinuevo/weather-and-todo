@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchCurrentWeather, currentTime } from "../loaders/weather";
+import { fetchCurrentWeather, currentTime } from "../../loaders/weather";
+import TimeDisplay from "./Time";
 
 export default function CurrentWeather() {
   const [weather, setWeather] = useState([]);
@@ -20,7 +21,6 @@ export default function CurrentWeather() {
             weekday: "long",
           }).format(date)
         );
-        setTime(currentTime())
         console.log(fetchData);
       } catch (error) {
         console.log("There has been a issue fetching the forecast");
@@ -30,10 +30,11 @@ export default function CurrentWeather() {
     getWeather();
   }, []);
 
+
   return (
-    <div>
+    <div className="mt-6">
       <h1 className="text-xl">
-        {dayOfWeek}, {formattedDate} | {time}
+        {dayOfWeek}, {formattedDate} | {<TimeDisplay/>}
       </h1>
     </div>
   );

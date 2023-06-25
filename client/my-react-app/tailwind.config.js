@@ -6,11 +6,6 @@ export default {
   ],
   theme: {
     extend: {},
-    fontFamily: {
-      'xl': '35px',
-      '2xl': '45px',
-      '3xl': '65px'
-    },
   },
   plugins: [],
 }
