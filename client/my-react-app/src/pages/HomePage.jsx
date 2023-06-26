@@ -2,6 +2,7 @@ import {useState, useEffect } from 'react'
 import { fetchForecast } from '../loaders/weather';
 import Weather from '../componets/weather/Weather';
 import Forecast from '../componets/weather/Forecast';
+import Todo from '../componets/todo/Todo';
 
 export default function HomePage() {
     const [forecast, setForecast] = useState([]);
@@ -27,6 +28,7 @@ export default function HomePage() {
         <h1>New York, NY</h1>
         <Weather/>
         <Forecast/>
+        <Todo/>
     </div>
   )
 }
