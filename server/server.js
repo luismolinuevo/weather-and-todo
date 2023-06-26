@@ -2,7 +2,12 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
+
+const {todo, sequelize} = require("./models")
 dotenv.config();
+
+
+
 
 const app = express();
 
@@ -13,6 +18,9 @@ app.use(morgan("tiny"));
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log("Server is listening at localhost:8080");
-});
+// db.sequelize.sync().then((req) => {
+  app.listen(PORT, async () => {
+    await sequelize.authenticate()
+    console.log("Server is listening at localhost:8080");
+  });
+// });
