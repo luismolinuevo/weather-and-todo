@@ -7,6 +7,7 @@ export default function TodoFilter() {
   const [showCompleted, setShowCompleted] = useState(false);
   const [showActive, setShowActive] = useState(false)
   const [filteredPost, setFilteredPost] = useState([])
+  const [showAll, setShowAll] = useState(true)
 
   useEffect(() => {
     const getTodos = async () => {
@@ -29,11 +30,11 @@ export default function TodoFilter() {
     const filterTodos = () => {
       let filtered = [...todos];
       if (showCompleted) {
-        filtered = filtered.filter((todo) => !todo.completed === true);
+        filtered = filtered.filter((todo) => todo.completed === true);
       }
 
       if (showActive) {
-        filtered = filtered.filter((todo) => todo.completed);
+        filtered = filtered.filter((todo) => !todo.completed);
       }
 
       setFilteredPost(filtered);
@@ -45,24 +46,27 @@ export default function TodoFilter() {
   const handleCompleted = () => {
     setShowCompleted(true);
     setShowActive(false);
+    setShowAll(false)
   };
 
   const handleActive = () => {
     setShowActive(true);
     setShowCompleted(false);
+    setShowAll(false)
   };
 
   const handleAll = () => {
+    setShowAll(true)
     setShowActive(false)
     setShowCompleted(false)
   }
 
   return (
     <div>
-      <div className="flex gap-8 justify-center">
-        <button onClick={handleAll}>Toggle All</button>
-        <button onClick={handleCompleted}>Toggle Active</button>
-        <button onClick={handleActive}>Toggle Completed</button>
+      <div className="flex text-2xl text-blue-500 justify-center py-12">
+        <button onClick={handleAll} className={`border-2 border-r-black p-2 h-[50px] w-[250px] ${showAll ? "bg-[#c4c8d0]" : "bg-white"}`}>All Todos</button>
+        <button onClick={handleActive} className={`border-2 border-r-black p-2 h-[50px] w-[250px] ${showActive ? "bg-[#c4c8d0] " : "bg-white"}`}>Active Todos</button>
+        <button onClick={handleCompleted} className={` p-2 h-[50px] w-[250px] ${showCompleted ? "bg-[#c4c8d0]" : "bg-white"}`}>Completed Todos</button>
       </div>
       <ul>
         {filteredPost && filteredPost.length != 0 ? filteredPost.map((todo) => (
