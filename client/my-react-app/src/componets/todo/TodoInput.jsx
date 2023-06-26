@@ -16,10 +16,11 @@ export default function TodoInput() {
 
   return (
     <div>
-        {/* <form action={handleCreateTodo}> */}
-            <input type="text" onChange={(e) => setDescription(e.target.value)} className='text-black'/>
-            <button type='submit' onClick={handleCreateTodo}><GrAdd/></button>
-        {/* </form> */}
+        <h1 className='py-10'>Todo List</h1>
+        <form className='flex justify-center'>
+            <input type="text" onChange={(e) => setDescription(e.target.value)} className='text-black h-[40px] sm:w-[500px] mr-4 sm:mr-6 p-2 text-2xl outline-none shadow-[lg]'/>
+            <button type='submit' onClick={handleCreateTodo}><GrAdd className="h-[35px]"/></button>        
+        </form>
     </div>
   )
 }
