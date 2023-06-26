@@ -30,7 +30,7 @@ export default function Forecast() {
     <div className="pt-[60px]">
       <div className>
         <h1 className="text-2xl pb-4">Daily Forecast</h1>
-        <div className="flex justify-center gap-16 border-t-2 border-white mx-[450px]">
+        <div className="sm:flex justify-center gap-16 border-t-2 border-white md:mx-[450px] flex-wrap">
           {forecast && forecast.length != 0 ? (
             forecast.map((item) => (
               <div className="pt-4">
