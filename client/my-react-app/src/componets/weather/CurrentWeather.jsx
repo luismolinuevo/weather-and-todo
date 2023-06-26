@@ -31,7 +31,7 @@ export default function CurrentWeather() {
         );
         console.log(fetchData);
       } catch (error) {
-        console.log("There has been a issue fetching the forecast");
+        console.log("There has been a issue fetching the weather");
       }
     };
 
@@ -49,7 +49,7 @@ export default function CurrentWeather() {
         {dayOfWeek}, {formattedDate} | {<TimeDisplay/>}
       </h1>
       <h3 className="text-2xl pt-4">{weatherInfo.description}</h3>
-      <div className="flex justify-center pt-8 gap-12 items-center">
+      <div className="flex justify-center pt-8 gap-10 md:gap-16 items-center">
         <img src={`https://openweathermap.org/img/w/${weatherInfo.icon}.png`} alt="weather icon" className="w-[60px] md:w-[100px]"/>
         <h3 className="">{parseInt(weatherMainInfo.temp_fahrenheit)}&deg;F</h3>
         <ul className="text-lg md:text-3xl">
