@@ -18,6 +18,7 @@ export default function TodoItem({todoId, description}) {
       if (!isChecked) {
         // Send edit request when checkbox is checked
         const setCompletedFalse= await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
+          // description: description,
           completed: false,
         });
 
@@ -26,6 +27,7 @@ export default function TodoItem({todoId, description}) {
       } else {
         // Send another request when checkbox is unchecked
         const setCompletedTrue = await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
+          // description: description,
           completed: true
         });
 
@@ -62,27 +64,28 @@ export default function TodoItem({todoId, description}) {
    
   return (
     <div className='flex justify-center'>
-      <input type="checkbox" checked={isChecked} onChange={handleCompleted} />
+      <div className='bg-white flex h-[40px] items-center'>
+      <input type="checkbox" checked={isChecked} onChange={handleCompleted} className="h-6 w-6 text-indigo-600 mr-2"/>
       {wantToEdit ? (
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className='text-black'
+          className='text-black h-[40px] text-3xl w-[400px]'
         />
       ) : (
-        <input type="text" disabled className='text-black bg-white' value={"ehey I love you"}/>
+        <input type="text" disabled className='text-black bg-white h-[40px] text-3xl' value={description}/>
       )}
       {
         wantToEdit ? (
           <div>
-            <button onClick={() => setWantToEdit(false)}><FcCancel/></button>
-            <button onClick={handleEdit}><AiOutlineCheck/></button>
+            <button onClick={() => setWantToEdit(false)}><FcCancel className='h-[35px] text-blue-500'/></button>
+            <button onClick={handleEdit}><AiOutlineCheck className='h-[35px] text-blue-500'/></button>
           </div>
-        ) : <button onClick={() => setWantToEdit(true)}><AiFillEdit/></button>
+        ) : <button onClick={() => setWantToEdit(true)}><AiFillEdit className='h-[35px] text-blue-500'/></button>
       }
-      <button><AiFillDelete/></button>
-
+      <button><AiFillDelete className='h-[35px] text-blue-500'/></button>
+      </div>
     </div>
   )
 }
