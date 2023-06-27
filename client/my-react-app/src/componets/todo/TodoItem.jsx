@@ -54,7 +54,7 @@ export default function TodoItem({todoId, description, completed}) {
     try {
       const deleteTodo = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`);
       console.log("Deleted post");
-      window.location.reload(false);
+      // window.location.reload(false);
     } catch(err) {
       console.log("There has been a error trying to delete this post")
     }
