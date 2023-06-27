@@ -3,7 +3,12 @@
 This app uses the open weather api to fetch the current weather and 5 day forecast for New York. I also allows users to create, delete, edit, and mark todos as completed
 ## Tech Stack
 
-Tech Stack: React.js, TailwindCSS, Express, Sequeilze, Postgres
+FrontEnd Tech Stack: React.js, TailwindCSS, React Icons
+Server Techstack: Node.js, Express.js, Sequelize ORM, Postgres, Cors, Morgan, Nodemon
+
+## Live Site
+
+https://weather-and-todo-6h77.vercel.app/
 
 ## Getting Started
 
