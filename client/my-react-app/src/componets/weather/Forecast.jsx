@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchForecast } from "../../loaders/weather";
 import { BiUpArrowAlt, BiDownArrowAlt} from "react-icons/bi"
 
+//get and display five day forecast of New York
 export default function Forecast() {
   const [forecast, setForecast] = useState([]);
 
@@ -11,7 +12,6 @@ export default function Forecast() {
         const fetchData = await fetchForecast();
         setForecast(fetchData);
 
-        console.log(fetchData);
       } catch (error) {
         console.log("There has been a issue fetching the forecast");
       }

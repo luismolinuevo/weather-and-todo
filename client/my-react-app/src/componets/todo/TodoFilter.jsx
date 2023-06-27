@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TodoItem from "./TodoItem";
 
+//Displays the todos, filters the todos
 export default function TodoFilter() {
   const [todos, setTodos] = useState([]);
   const [showCompleted, setShowCompleted] = useState(false);
@@ -15,7 +16,7 @@ export default function TodoFilter() {
         const fetchData = await axios.get(
           `${import.meta.env.VITE_SERVER_URL}/todo`
         );
-        console.log(fetchData.data);
+
         setTodos(fetchData.data.fetchTodos);
       } catch (err) {
         console.log("There has been a error trying to fetch data");

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//fetch current weather
+//Fetch current weather
 export async function fetchCurrentWeather() {
   try {
     const response = await axios.get(
@@ -27,7 +27,7 @@ export async function fetchCurrentWeather() {
   }
 }
 
-//fetch five day forecast
+//Fetch five day forecast
 export async function fetchForecast() {
   try {
     const response = await axios.get(

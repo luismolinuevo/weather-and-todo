@@ -1,6 +1,6 @@
 import {useState, useEffect } from 'react'
 import { fetchForecast } from '../loaders/weather';
-import Weather from '../componets/weather/Weather';
+import CurrentWeather from '../componets/weather/CurrentWeather';
 import Forecast from '../componets/weather/Forecast';
 import Todo from '../componets/todo/Todo';
 
@@ -11,7 +11,7 @@ export default function HomePage() {
     bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-700 via-blue-800 to-gray-900
     '>
         <h1>New York, NY</h1>
-        <Weather/>
+        <CurrentWeather/>
         <Forecast/>
         <Todo/>
     </div>

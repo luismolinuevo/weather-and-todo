@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchCurrentWeather } from "../../loaders/weather";
 import TimeDisplay from "../LiveTime";
 
+//fetch the current weather, and display the current weather
 export default function CurrentWeather() {
   const [weather, setWeather] = useState([]);
   const [formattedDate, setFormattedDate] = useState(null);
@@ -29,8 +30,7 @@ export default function CurrentWeather() {
             timeZone: "America/New_York",
           }).format(date)
         );
-  
-        console.log(fetchData);
+        
       } catch (error) {
         console.log("There has been an issue fetching the weather");
       }
@@ -41,7 +41,7 @@ export default function CurrentWeather() {
   
   
   if (!weather) {
-    return null; // Render null or a loading spinner while waiting for the weather data
+    return null; 
   }
 
 

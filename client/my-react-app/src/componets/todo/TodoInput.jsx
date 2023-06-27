@@ -2,6 +2,7 @@ import {useState} from 'react'
 import axios from "axios";
 import {GrAdd} from "react-icons/gr"
 
+//Creates a todo
 export default function TodoInput() {
     const [description, setDescription] = useState("")
     const handleCreateTodo = async () => {

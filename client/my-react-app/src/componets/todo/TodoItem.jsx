@@ -3,11 +3,13 @@ import {useState} from 'react'
 import {AiFillDelete, AiFillEdit, AiOutlineCheck} from "react-icons/ai"
 import {FcCancel} from "react-icons/fc"
 
+//Single todo item
 export default function TodoItem({todoId, description, completed}) {
   const [wantToEdit, setWantToEdit] = useState(false);
   const [inputValue, setInputValue] = useState(description)
   const [isChecked, setIsChecked] = useState(completed)
 
+  //Set todo to completed or active
   const handleCompleted = async () => {
     try {
       setIsChecked(!isChecked);
@@ -15,7 +17,6 @@ export default function TodoItem({todoId, description, completed}) {
       if (!isChecked) {
         // Send edit request when checkbox is checked
         const setCompletedFalse= await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
-          // description: description,
           completed: true,
         });
 
@@ -25,7 +26,6 @@ export default function TodoItem({todoId, description, completed}) {
       } else {
         // Send another request when checkbox is unchecked
         const setCompletedTrue = await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
-          // description: description,
           completed: false
         });
 
@@ -37,6 +37,7 @@ export default function TodoItem({todoId, description, completed}) {
     }
   }
 
+  //Handles the edit of a todo description
   const handleEdit = async () => {
     try {
       const editTodo = await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
@@ -50,6 +51,7 @@ export default function TodoItem({todoId, description, completed}) {
     }
   }
 
+  //Handles the deletion of a todo
   const handleDelete = async () => {
     try {
       const deleteTodo = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`);
@@ -60,6 +62,7 @@ export default function TodoItem({todoId, description, completed}) {
     }
   }
 
+  //Cancels the edit process
   const handleCancel = () => {
     setWantToEdit(false);
     setInputValue(description)

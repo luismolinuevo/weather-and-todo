@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+//Allows me to get the live time on New York
 function LiveTime() {
   const [formattedTime, setFormattedTime] = useState("");
 
