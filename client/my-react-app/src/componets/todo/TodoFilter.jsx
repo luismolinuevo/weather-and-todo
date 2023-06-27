@@ -70,10 +70,9 @@ export default function TodoFilter() {
       </div>
       <ul>
         {filteredPost && filteredPost.length != 0 ? filteredPost.map((todo) => (
-          <li key={todo.id}>{todo.description}</li>
+          <li key={todo.id}><TodoItem todoId={todo.id} description={todo.description} completed={todo.completed}/></li>
         )) : <p></p>}
       </ul>
-      <TodoItem/>
     </div>
   );
 }

@@ -3,13 +3,10 @@ import {useState} from 'react'
 import {AiFillDelete, AiFillEdit, AiOutlineCheck} from "react-icons/ai"
 import {FcCancel} from "react-icons/fc"
 
-export default function TodoItem({todoId, description}) {
+export default function TodoItem({todoId, description, completed}) {
   const [wantToEdit, setWantToEdit] = useState(false);
-  const [isChecked, setIsChecked] = useState(false)
   const [inputValue, setInputValue] = useState(description)
-  const deleteTodo = async () => {
-
-  }
+  const [isChecked, setIsChecked] = useState(completed)
 
   const handleCompleted = async () => {
     try {
@@ -19,19 +16,21 @@ export default function TodoItem({todoId, description}) {
         // Send edit request when checkbox is checked
         const setCompletedFalse= await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
           // description: description,
-          completed: false,
+          completed: true,
         });
 
         console.log("Set completed to false")
+        // window.location.reload(false);
         
       } else {
         // Send another request when checkbox is unchecked
         const setCompletedTrue = await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
           // description: description,
-          completed: true
+          completed: false
         });
 
         console.log("Set to completed")
+        // window.location.reload(false);
       }
     } catch (err) {
       console.log('There has been an error:', err);
@@ -43,6 +42,9 @@ export default function TodoItem({todoId, description}) {
       const editTodo = await axios.put(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`, {
         description: inputValue
       });
+
+      setWantToEdit(false);
+      window.location.reload(false);
     } catch(err) {
       console.log("There has been a error editing this post")
     }
@@ -51,7 +53,8 @@ export default function TodoItem({todoId, description}) {
   const handleDelete = async () => {
     try {
       const deleteTodo = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`);
-      console.log("Deleted post")
+      console.log("Deleted post");
+      window.location.reload(false);
     } catch(err) {
       console.log("There has been a error trying to delete this post")
     }
@@ -63,7 +66,7 @@ export default function TodoItem({todoId, description}) {
   }
    
   return (
-    <div className='flex justify-center'>
+    <div className='flex justify-center pt-1'>
       <div className='bg-white flex h-[40px] items-center'>
       <input type="checkbox" checked={isChecked} onChange={handleCompleted} className="h-6 w-6 text-indigo-600 mr-2"/>
       {wantToEdit ? (
