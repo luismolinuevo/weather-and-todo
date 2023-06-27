@@ -14,29 +14,31 @@ export default function CurrentWeather() {
     const getWeather = async () => {
       try {
         const fetchData = await fetchCurrentWeather();
-          setWeather(fetchData);
-          setWeatherInfo(fetchData.weather[0])
-          setWeatherMainInfo(fetchData.main);
-          setWind(fetchData.wind)
-          console.log(fetchData.weather[0])
-        
-        
+        setWeather(fetchData);
+        setWeatherInfo(fetchData.weather[0]);
+        setWeatherMainInfo(fetchData.main);
+        setWind(fetchData.wind);
+  
         const date = new Date(fetchData.dt * 1000);
-
-        setFormattedDate(date.toLocaleDateString());
+        const options = { timeZone: "America/New_York" };
+  
+        setFormattedDate(date.toLocaleDateString(undefined, options));
         setDayOfWeek(
           new Intl.DateTimeFormat("en-US", {
             weekday: "long",
+            timeZone: "America/New_York",
           }).format(date)
         );
+  
         console.log(fetchData);
       } catch (error) {
-        console.log("There has been a issue fetching the weather");
+        console.log("There has been an issue fetching the weather");
       }
     };
-
+  
     getWeather();
   }, []);
+  
   
   if (!weather) {
     return null; // Render null or a loading spinner while waiting for the weather data
