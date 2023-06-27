@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useState} from 'react'
 import {AiFillDelete, AiFillEdit, AiOutlineCheck} from "react-icons/ai"
 import {FcCancel} from "react-icons/fc"
@@ -42,6 +43,15 @@ export default function TodoItem({todoId, description}) {
       });
     } catch(err) {
       console.log("There has been a error editing this post")
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      const deleteTodo = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/todo/${todoId}`);
+      console.log("Deleted post")
+    } catch(err) {
+      console.log("There has been a error trying to delete this post")
     }
   }
 
