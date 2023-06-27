@@ -20,7 +20,7 @@ export default function TodoItem({todoId, description, completed}) {
         });
 
         console.log("Set completed to false")
-        // window.location.reload(false);
+        window.location.reload(false);
         
       } else {
         // Send another request when checkbox is unchecked
@@ -30,7 +30,7 @@ export default function TodoItem({todoId, description, completed}) {
         });
 
         console.log("Set to completed")
-        // window.location.reload(false);
+        window.location.reload(false);
       }
     } catch (err) {
       console.log('There has been an error:', err);
@@ -74,10 +74,10 @@ export default function TodoItem({todoId, description, completed}) {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className='text-black h-[40px] text-3xl w-[400px]'
+          className='text-black h-[40px] text-3xl w-[200px] sm:w-[400px]'
         />
       ) : (
-        <input type="text" disabled className='text-black bg-white h-[40px] text-3xl' value={description}/>
+        <input type="text" disabled className='text-black bg-white h-[40px] text-3xl w-[250px] sm:w-[400px]' value={description}/>
       )}
       {
         wantToEdit ? (
@@ -87,7 +87,7 @@ export default function TodoItem({todoId, description, completed}) {
           </div>
         ) : <button onClick={() => setWantToEdit(true)}><AiFillEdit className='h-[35px] text-blue-500'/></button>
       }
-      <button><AiFillDelete className='h-[35px] text-blue-500'/></button>
+      <button onClick={handleDelete}><AiFillDelete className='h-[35px] text-blue-500'/></button>
       </div>
     </div>
   )

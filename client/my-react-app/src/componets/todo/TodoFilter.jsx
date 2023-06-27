@@ -63,10 +63,10 @@ export default function TodoFilter() {
 
   return (
     <div>
-      <div className="flex text-2xl text-blue-500 justify-center py-12">
-        <button onClick={handleAll} className={`border-2 border-r-black p-2 h-[50px] w-[250px] ${showAll ? "bg-[#c4c8d0]" : "bg-white"}`}>All Todos</button>
-        <button onClick={handleActive} className={`border-2 border-r-black p-2 h-[50px] w-[250px] ${showActive ? "bg-[#c4c8d0] " : "bg-white"}`}>Active Todos</button>
-        <button onClick={handleCompleted} className={` p-2 h-[50px] w-[250px] ${showCompleted ? "bg-[#c4c8d0]" : "bg-white"}`}>Completed Todos</button>
+      <div className="flex text-lg sm:text-2xl text-blue-500 justify-center py-12">
+        <button onClick={handleAll} className={`border-1 sm:p-2 border-r-black h-[60px] w-[250px] ${showAll ? "bg-[#c4c8d0]" : "bg-white"}`}>All Todos</button>
+        <button onClick={handleActive} className={`border-1 sm:p-2 border-r-black h-[60px] w-[250px] ${showActive ? "bg-[#c4c8d0] " : "bg-white"}`}>Active Todos</button>
+        <button onClick={handleCompleted} className={`h-[60px] w-[250px] ${showCompleted ? "bg-[#c4c8d0]" : "bg-white"}`}>Completed Todos</button>
       </div>
       <ul>
         {filteredPost && filteredPost.length != 0 ? filteredPost.map((todo) => (
