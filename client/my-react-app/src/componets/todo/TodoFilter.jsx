@@ -73,6 +73,7 @@ export default function TodoFilter() {
           <li key={todo.id}>{todo.description}</li>
         )) : <p></p>}
       </ul>
+      <TodoItem/>
     </div>
   );
 }
